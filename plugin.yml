@@ -1,0 +1,8 @@
+name: DailyReward
+main: de.niklas1623.main.Main
+version: 1.0
+author: niklas1623
+description: DailyReward by niklas1623 
+
+commands:
+  dailyreload:
