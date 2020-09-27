@@ -25,7 +25,6 @@ public class DailyRewardManager {
 
 			ps_firstjoin.execute();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
