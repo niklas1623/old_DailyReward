@@ -33,4 +33,9 @@ public class Filemanager {
 	
 	}
 	
+	public static void getDayReward(int onlinedays) {
+		FileConfiguration cfg = getConfigFileConfiguration();
+		Main.getInstace().Reward = ChatColor.translateAlternateColorCodes('&', cfg.getString("Rewards."+onlinedays));
+	}
+	
 }

@@ -51,7 +51,7 @@ public class MySQL {
 		if (isConnected()) {
 			try {
 				con.createStatement().executeUpdate(
-						"CREATE TABLE IF NOT EXISTS player (spielername VARCHAR(100), uuid VARCHAR(100), PRIMARY KEY (uuid))");
+						"CREATE TABLE IF NOT EXISTS player (spielername VARCHAR(100), uuid VARCHAR(100), onlinedays INT, lastjoin DATE NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (uuid))");
 
 			} catch (SQLException e) {
 				e.printStackTrace();

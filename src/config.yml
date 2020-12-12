@@ -15,7 +15,7 @@ Settings:
 Database:
     username: username
     password: passwort
-    database: BanManager
+    database: DailyReward
     host: localhost
     port: '3306'
     

@@ -17,7 +17,7 @@ public class DailyRewardManager {
 	public static void FirstJoin(String playername, String uuid) {
 
 		try {
-			String firstjoin = "INSERT INTO player (spielername, uuid, date) values (?, ?, ?);";
+			String firstjoin = "INSERT INTO player (spielername, uuid, lastjoin) values (?, ?, ?);";
 			PreparedStatement ps_firstjoin = MySQL.con.prepareStatement(firstjoin);
 			ps_firstjoin.setString(1, playername);
 			ps_firstjoin.setString(2, uuid);
@@ -32,7 +32,7 @@ public class DailyRewardManager {
 	public static void Join(String uuid) {
 
 		try {
-			String join = "UPDATE player SET date = ? WHERE uuid = ?";
+			String join = "UPDATE player SET lastjoin = ? WHERE uuid = ?";
 			PreparedStatement ps_join = MySQL.con.prepareStatement(join);
 			ps_join.setDate(1, getCurrentDate());
 			ps_join.setString(2, uuid);
@@ -54,7 +54,7 @@ public class DailyRewardManager {
 	}
 
 	public static Date getDate(String uuid) {
-		String getDate = "SELECT date FROM player WHERE uuid = ?";
+		String getDate = "SELECT lastjoin FROM player WHERE uuid = ?";
 		try {
 			PreparedStatement ps_getDate = MySQL.con.prepareStatement(getDate);
 			ps_getDate.setString(1, uuid);
@@ -67,6 +67,35 @@ public class DailyRewardManager {
 		}
 		return null;
 
+	}
+	
+	public static void setDays(String uuid, int onlinedays) {
+		String days = "UPDATE player SET onlinedays = ? WHERE uuid = ?";
+		try {
+			PreparedStatement ps_days = MySQL.con.prepareStatement(days);
+			ps_days.setInt(1, onlinedays);
+			ps_days.setString(2, uuid);
+			
+			ps_days.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public static int getDays(String uuid) {
+		String getDays = "SELECT onlinedays FROM player WHERE uuid = ?";
+		try {
+			PreparedStatement ps_getDays = MySQL.con.prepareStatement(getDays);
+			ps_getDays.setString(1, uuid);
+			ResultSet rs = ps_getDays.executeQuery();
+			while (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 }

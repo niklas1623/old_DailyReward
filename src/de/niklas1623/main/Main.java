@@ -19,6 +19,7 @@ public class Main extends JavaPlugin{
 		MySQL.connect();
 		MySQL.createTable();
 		Bukkit.getConsoleSender().sendMessage(prefix + " Plugin wurde §ageladen§r!");
+		
 	}
 	
 	
@@ -42,6 +43,7 @@ public class Main extends JavaPlugin{
 	
 	public String prefix;
 	public String RewardCommand;
+	public String Reward;
 
 
 	
